@@ -109,7 +109,7 @@ let tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
 
 console.log(tips);
 
-let totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]]
+let totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
 
 console.log(totals);
 
@@ -139,7 +139,7 @@ let john = {
         return this.BMI;
     }
 
-}
+};
 
 if (mark.calcBMI() > john.calcBMI()) {
     console.log(`${mark.fullName}'s BMI ${mark.calcBMI()} is higher than ${john.fullName}'s ${john.calcBMI()}.`);
@@ -160,3 +160,90 @@ for (let i = 0; i < bills.length; i++) {
 }
 console.log(tips);
 console.log(totals);
+
+
+//Developer Skills & Editor Setup
+
+const temp1 = [17, 21, 23];
+const temp2 = [12, 5, -5, 0, 4];
+
+const printForecast = (arr) => {
+    let temperature = '';
+    arr.forEach((item, i) => temperature += `...${item}C in ${i + 1} days`);
+    //     let temperature = '';
+    //     for (let i = 0; i < arr.length - 1, i++;) {
+    //         temperature += `... ${arr[i]}oC in ${i + 1} days`;
+    //     }
+    console.log(temperature);
+};
+
+printForecast(temp1);
+printForecast(temp2);
+
+//Data Structures, Modern Operators and Strings
+
+const game = {
+    team1: 'Bayern Munich', team2: 'Borrussia Dortmund', players: [
+        [
+            'Neuer',
+            'Pavard',
+            'Martinez',
+            'Alaba',
+            'Davies',
+            'Kimmich',
+            'Goretzka',
+            'Coman',
+            'Muller',
+            'Gnarby',
+            'Lewandowski',
+        ], [
+            'Burki',
+            'Schulz',
+            'Hummels',
+            'Akanji',
+            'Hakimi',
+            'Weigl',
+            'Witsel',
+            'Hazard',
+            'Brandt',
+            'Sancho',
+            'Gotze',
+        ],],
+    score: '4:0',
+    scored: ['Lewandowski', 'Gnarby', 'Lewandowski',
+        'Hummels'],
+    date: 'Nov 9th, 2037',
+    odds: {
+        team1: 1.33,
+        x: 3.25,
+        team2: 6.5,
+    },
+};
+
+//1
+const [players1, players2] = game.players;
+//2
+const [gk, ...fieldPlayers] = players1;
+//3
+const allplayers = [...players1, ...players2];
+//4 
+const playersFinal = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+//5
+const { odds: { team1, x: draw, team2 } } = game;
+//6
+const printGoals = (...players) => {
+    console.log(`${players.length} goals were scored`);
+
+};
+
+printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+printGoals(...game.scored);
+
+//7
+
+team1 < team2 && console.log('Team 1 is more likely to win');
+team1 > team2 && console.log('Team 2 is more likely to win');
+
+
+
+
