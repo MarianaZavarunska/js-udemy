@@ -373,3 +373,39 @@ poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
 
     document.querySelector('body').addEventListener('click', function () { header.style.color = 'blue'; });
 })();
+
+//Working With Arrays
+//Coding Challenge #1
+
+function checkDogs(dogsJulia, dogsKate) {
+    const newJuliaArr = dogsJulia.slice();
+    newJuliaArr.splice(0, 1);
+    newJuliaArr.splice(-2);
+    const dogs = newJuliaArr.concat(dogsKate);
+
+    dogs.forEach((dog, i) => {
+        if (dog >= 3) {
+            console.log(`Dog number ${i + 1}
+        is an adult, and is ${dog} years old`);
+        } else {
+            console.log(`Dog number ${i + 1} is still a puppy`);
+        }
+    });
+}
+
+checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+
+//Coding Challenge #2
+
+function calcAverageHumanAge(ages) {
+    // const dogsAge = ages.map(age => age <= 2 ? 2 * age : 16 + age * 4).filter(age => age >= 18);
+    // const among = dogsAge.length;
+    // return dogsAge.reduce((acc, cur) => acc + cur, 0) / among;
+    const avg = ages.map(age => age <= 2 ? 2 * age : 16 + age * 4)
+        .filter(age => age >= 18)
+        .reduce((acc, cur, _, arr) => acc + cur / arr.length, 0);
+    return avg;
+
+}
+
+console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
