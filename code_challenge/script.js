@@ -244,6 +244,125 @@ printGoals(...game.scored);
 team1 < team2 && console.log('Team 1 is more likely to win');
 team1 > team2 && console.log('Team 2 is more likely to win');
 
+//Coding Challenge #2
 
+//1
+
+game.scored.forEach((item, i) => {
+    console.log(`Goal ${i + 1}: ${item}`);
+});
+
+// 2 
+let avg = 0;
+
+for (const value of Object.values(game.odds)) {
+    avg += value;
+    avg /= Object.values(game.odds).length;
+}
+
+console.log(avg);
+
+//3
+
+for (const [team, odd] of Object.entries(game.odds)) {
+    const teamStr = team === 'x' ? 'draw' : `Victory ${game[team]}`;
+    console.log(`Odd of ${teamStr} ${odd}`);
+
+}
+
+//Coding Challenge #3
+
+const gameEvents = new Map([[17, '⚽ GOAL'],
+[36, '🔁 Substitution'],
+[47, '⚽ GOAL'],
+[61, '🔁 Substitution'],
+[64, '🔶 Yellow card'],
+[69, '🔴 Red card'],
+[70, '🔁 Substitution'],
+[72, '🔁 Substitution'],
+[76, '⚽ GOAL'],
+[80, '⚽ GOAL'],
+[92, '🔶 Yellow card']
+]);
+
+//1
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+
+//2 
+gameEvents.delete(64);
+
+//3
+const time = [...gameEvents.keys()].pop();
+console.log(`An event happened,on average, every ${time / gameEvents.size} minutes`);
+
+//4 
+for (const [min, event] of gameEvents) {
+    const half = min <= 45 ? 'First' : 'Second';
+    console.log(`[${half} HALF]: ${min} ${event}`);
+}
+
+//Coding Challenge #4
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+
+
+const btn = document.querySelector('button');
+
+btn.addEventListener(
+    'click', function () {
+        const text = document.querySelector('textarea').value;
+        const rows = text.split('\n');
+        console.log(rows);
+
+        for (const [i, row] of rows.entries()) {
+            const [first, second] = row.toLowerCase().trim().split('_');
+            const output = `${first}${second.replace(second[0], second[0].toUpperCase())}`;
+
+            console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)} `);
+        }
+    }
+);;
+
+//A Closer Look at Functions
+//Coding Challenge #1
+
+
+const poll = {
+    question: "What is your favourite programming language?",
+    options: ["0: JavaScript", "1: Python", "2: Rust", "3: C++"],
+
+    answers: new Array(4).fill(0),
+
+    registerNewAnswer() {
+
+        const answer = Number(prompt(`${this.question}\n ${this.options.join('\n')}\n (Write option number)`));
+
+        console.log(answer);
+
+        typeof answer === 'number' && answer < this.options.length && this.answers[answer]++;
+
+        this.displayResults();
+        this.displayResults('string');
+    },
+
+    displayResults(type = 'array') {
+        if (type === 'array') {
+            console.log(this.answers);
+        } else if (type === 'string') {
+            console.log(`Poll results are ${this.answers.join(',')}`);
+        }
+    }
+
+};
+
+
+document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+
+poll.displayResults.call({ answers: [5, 2, 3] });
+poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
 
 
