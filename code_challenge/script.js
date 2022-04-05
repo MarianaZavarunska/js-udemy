@@ -410,5 +410,69 @@ function calcAverageHumanAge(ages) {
 
 console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
 
+//Coding Challenge #4
+
+const dogs = [
+    { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+    { weight: 8, curFood: 200, owners: ['Matilda'] },
+    { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+    { weight: 32, curFood: 340, owners: ['Michael'] },
+];
+
+//1
+dogs.forEach(dog => dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28));
+console.log(dogs);
+
+//2
+const sarahDog = dogs[dogs.findIndex(dog => dog.owners.includes('Sarah'))];
+
+function checkFood(dog) {
+    return dog.curFood > (dog.recommendedFood * 0.90) && dog.curFood < (dog.recommendedFood * 1.10) ? 'Good' : 'Bad';
+}
+
+console.log(checkFood(sarahDog));
+
+//3
+
+const ownersEatTooMuch = dogs.filter(dog => dog.curFood > dog.recommendedFood)
+    .flatMap(dog => dog.owners);
 
 
+console.log(ownersEatTooMuch);
+
+const ownersEatTooLittle = dogs.filter(dog => dog.curFood < dog.recommendedFood)
+    .flatMap(dog => dog.owners);
+
+
+console.log(ownersEatTooLittle);
+
+//4
+
+// "Matilda and Alice and Bob's dogs eat too much!";
+// "Sarah and John and Michael's dogs eat too little!";
+
+const showMessage = (owners, type) => {
+    const [own1, own2, own3] = owners;
+    if (type === 'little')
+        return `${own1} and ${own2} and ${own3}'s dogs eat too little!`;
+    else if (type === 'much')
+        return `${own1} and ${own2} and ${own3}'s dogs eat too much!`;
+};
+
+console.log(showMessage(ownersEatTooMuch, 'much'));
+console.log(showMessage(ownersEatTooLittle, 'little'));
+
+
+//5
+console.log(dogs.some(dog => dog.curFood === dog.recommendedFood));
+
+//6
+console.log(dogs.some(dog => dog.curFood > dog.recommendedFood * 0.9 && dog.curFood < dog.recommendedFood * 1.10));
+
+//7 
+console.log(dogs.filter(dog => checkFood(dog) === 'Good'));
+
+//8
+const dogSorted = dogs.slice().sort((a, b) => a.recommendedFood - b.recommendedFood);
+
+console.log(dogSorted);
