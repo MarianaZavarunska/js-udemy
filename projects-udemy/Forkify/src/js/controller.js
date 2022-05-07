@@ -76,7 +76,7 @@ const controlPagination = function (goToPage) {
 };
 
 const controlServings = function (newServings) {
-  console.log('serving');
+
   model.updateServings(newServings);
 
   recipeView.update(model.state.recipe);
@@ -101,6 +101,7 @@ const controlBookmark = function () {
 const controlAddRecipe = async function (newRecipe) {
   try {
     await model.uploadRecipe(newRecipe);
+    console.log(newRecipe);
 
     recipeView.render(model.state.recipe);
 
