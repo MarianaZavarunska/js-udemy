@@ -189,20 +189,55 @@ const createImage = (imgPath) => {
 
     });
 };
-let currImg;
-createImage('./img/img-1.jpg').then(img => {
-    currImg = img;
-    console.log('Img 1 is loaded');
-    return wait(2);
-}).then(() => {
-    currImg.style.display = 'none';
-    return createImage('./img/img-2.jpg');
-}).then(img => {
-    currImg = img;
-    console.log('Img 2 is loaded');
-    return wait(2);
-}).then(() => currImg.style.display = 'none')
-    .catch(err => console.error(err));
+// let currImg;
+// createImage('./img/img-1.jpg').then(img => {
+//     currImg = img;
+//     console.log('Img 1 is loaded');
+//     return wait(2);
+// }).then(() => {
+//     currImg.style.display = 'none';
+//     return createImage('./img/img-2.jpg');
+// }).then(img => {
+//     currImg = img;
+//     console.log('Img 2 is loaded');
+//     return wait(2);
+// }).then(() => currImg.style.display = 'none')
+//     .catch(err => console.error(err));
 
 
+// Coding Challenge #3
 
+const loadNPause = async () => {
+    try {
+        // Load img 1 
+        let img = await createImage('./img/img-1.jpg');
+        console.log('Img 1 is loaded');
+        await wait(2);
+        img.style.display = 'none';
+
+        // Load img 2
+        img = await createImage('./img/img-2.jpg');
+        console.log('Img 2 is loaded');
+        await wait(2);
+        img.style.display = 'none';
+
+    } catch (err) { console.error(err); };
+
+};
+
+// loadNPause();
+
+//  Part 2
+const loadAll = async (imgsArr) => {
+    try {
+        const imgs = imgsArr.map(async img => await createImage(img));
+        console.log(imgs);
+
+        const imgsEll = await Promise.all(imgs);
+        console.log(imgsEll);
+        imgsEll.forEach(img => img.classList.add('parallel'));
+    } catch (error) {
+        console.error(error);
+    }
+};
+loadAll(['./img/img-1.jpg', './img/img-2.jpg', './img/img-3.jpg']);
