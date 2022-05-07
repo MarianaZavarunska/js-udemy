@@ -5,6 +5,7 @@ import previewView from "./previewView.js";
 
 class AddRecipeView extends View {
     _parentElement = document.querySelector('.upload');
+    _message = 'Recipe was upload';
     _window = document.querySelector('.add-recipe-window');
     _overlay = document.querySelector('.overlay');
     _btnOpen = document.querySelector('.nav__btn--add-recipe');
